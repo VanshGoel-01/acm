@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusCart</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#FFE09A] min-h-screen px-10 py-6">
+
+  <!-- TOP BAR -->
+  <header class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold flex items-center gap-2">
+      🛒 CampusCart
+    </h1>
+
+    <div class="flex items-center gap-6">
+      🔔
+      <div class="w-9 h-9 bg-black rounded-full flex items-center justify-center text-white">
+        👤
+      </div>
+    </div>
+  </header>
+
+  <!-- SEARCH -->
+  <div class="mb-4">
+    <input
+      type="text"
+      placeholder="Search Chargers, Maggi, books..."
+      class="w-[420px] px-4 py-3 rounded-xl outline-none"
+    />
+  </div>
+
+  <!-- FILTERS -->
+  <div class="flex gap-3 mb-6">
+    <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm">+ Tech</span>
+    <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm">+ Food</span>
+    <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm">+ Books</span>
+    <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm">+ Free</span>
+  </div>
+
+  <!-- AVAILABLE NEAR YOU -->
+  <section class="mb-10">
+    <h2 class="font-semibold text-lg">Available near you</h2>
+    <p class="text-sm mb-4">Items from block A</p>
+
+    <div class="flex gap-6 overflow-x-auto">
+
+      <!-- ITEM CARD -->
+      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0">
+        <img src="maggie.png" class="w-full h-24 object-contain mb-2" />
+        <p class="font-medium">Maggi</p>
+        <p class="text-sm">Price: Rs.20</p>
+        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
+          View
+        </button>
+      </div>
+
+      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0">
+        <img src="charger.png" class="w-full h-24 object-contain mb-2" />
+        <p class="font-medium">Charger C-type</p>
+        <p class="text-sm">Price: Rs.200</p>
+        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
+          View
+        </button>
+      </div>
+
+      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0">
+        <img src="belt.png" class="w-full h-24 object-contain mb-2" />
+        <p class="font-medium">Brown Belt</p>
+        <p class="text-sm">Price: Rs.350</p>
+        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
+          View
+        </button>
+      </div>
+
+      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0">
+        <img src="shoes.png" class="w-full h-24 object-contain mb-2" />
+        <p class="font-medium">White Sneakers</p>
+        <p class="text-sm">Price: Rs.500</p>
+        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
+          View
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RECENTLY ADDED -->
+  <section>
+    <h2 class="font-semibold text-lg mb-4">Recently Added</h2>
+
+    <div class="flex gap-6">
+
+      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4">
+        <img src="watch.png" class="w-full h-24 object-contain mb-2" />
+        <p class="font-medium">Black Dial Watch</p>
+        <p class="text-sm">Price: Rs.400</p>
+        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
+          View
+        </button>
+      </div>
+
+      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4">
+        <img src="cake.png" class="w-full h-24 object-contain mb-2" />
+        <p class="font-medium">Chocolate Pastry</p>
+        <p class="text-sm">Price: Rs.50</p>
+        <p class="text-xs mt-1">Expires: 5 hours</p>
+        <button class="bg-black text-white w-full mt-2 py-1 rounded-full text-sm">
+          View
+        </button>
+      </div>
+
+      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex items-center justify-center">
+        <span class="text-gray-600">More coming…</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POST BUTTON -->
+  <button class="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full">
+    + Post
+  </button>
+
+</body>
+</html>
