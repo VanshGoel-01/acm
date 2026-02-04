@@ -5,126 +5,183 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CampusCart</title>
 
-  <!-- Tailwind CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* --- BACKGROUND ITEM STYLES --- */
+    .fill-item {
+      position: fixed; 
+      z-index: 0;
+      opacity: 0.5; 
+      pointer-events: none;
+      font-size: 28px;
+      color: transparent;
+      text-shadow: 0 0 0 #dbb048; 
+      animation: floatAnim 6s ease-in-out infinite;
+    }
+
+    /* Shape Classes */
+    .shape-L { width: 14px; height: 14px; border-top: 4px solid #dbb048; border-right: 4px solid #dbb048; border-top-right-radius: 4px; }
+    .shape-circle { width: 10px; height: 10px; border: 2px solid #dbb048; border-radius: 50%; }
+    .shape-dot { width: 8px; height: 8px; background-color: #dbb048; border-radius: 50%; }
+    .shape-rect { width: 6px; height: 16px; background-color: #dbb048; border-radius: 3px; }
+
+    /* --- GRID POSITIONS --- */
+    /* Top Band */
+    .z1 { top: 2%; left: 5%; transform: rotate(15deg); } 
+    .z2 { top: 5%; left: 30%; font-size: 22px; } 
+    .z3 { top: 3%; right: 35%; font-size: 26px; transform: rotate(-10deg); } 
+    .z4 { top: 6%; right: 10%; font-size: 22px; } 
+    /* Upper Band */
+    .z5 { top: 18%; left: 12%; transform: rotate(-20deg); } 
+    .z6 { top: 15%; right: 25%; transform: rotate(10deg); font-size: 30px; } 
+    .z7 { top: 22%; right: 5%; font-size: 20px; opacity: 0.3; } 
+    /* Middle Band */
+    .z8  { top: 35%; left: 4%; font-size: 32px; transform: rotate(5deg); } 
+    .z9  { top: 40%; left: 22%; font-size: 20px; opacity: 0.4; transform: rotate(45deg); } 
+    .z10 { top: 32%; right: 12%; font-size: 30px; transform: rotate(-15deg); } 
+    .z11 { top: 42%; right: 30%; font-size: 24px; opacity: 0.4; } 
+    /* Lower Band */
+    .z12 { top: 55%; left: 8%; font-size: 28px; transform: rotate(-10deg); } 
+    .z13 { top: 60%; left: 25%; font-size: 18px; transform: rotate(90deg); } 
+    .z14 { top: 52%; right: 15%; font-size: 34px; transform: rotate(20deg); } 
+    .z15 { top: 65%; right: 5%; font-size: 20px; } 
+    /* Bottom Band */
+    .z16 { top: 75%; left: 5%; font-size: 30px; transform: rotate(15deg); } 
+    .z17 { top: 82%; left: 20%; font-size: 24px; opacity: 0.4; } 
+    .z18 { top: 72%; right: 25%; font-size: 22px; transform: rotate(-30deg); } 
+    .z19 { top: 80%; right: 8%; font-size: 30px; transform: rotate(10deg); } 
+    /* Footer Band */
+    .z20 { top: 90%; left: 12%; font-size: 26px; transform: rotate(-5deg); } 
+    .z21 { top: 95%; left: 35%; font-size: 22px; opacity: 0.3; } 
+    .z22 { top: 92%; right: 35%; font-size: 26px; transform: rotate(25deg); } 
+    .z23 { top: 88%; right: 15%; font-size: 28px; transform: rotate(-10deg); } 
+    .z24 { top: 96%; left: 45%; font-size: 20px; opacity: 0.3; } 
+
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0px) rotate(var(--r, 0deg)); }
+      50% { transform: translateY(-8px) rotate(var(--r, 0deg)); }
+    }
+  </style>
 </head>
 
-<body class="bg-[#FFE09A] min-h-screen px-10 py-6">
+<body class="bg-[#FFD573] min-h-screen relative">
 
-  <!-- TOP BAR -->
-  <header class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold flex items-center gap-2">
-      🛒 CampusCart
-    </h1>
+  <div class="fill-item z1">🍕</div> <div class="fill-item z2 shape-L"></div> <div class="fill-item z3">📡</div> <div class="fill-item z4 shape-circle"></div>
+  <div class="fill-item z5">🎮</div> <div class="fill-item z6">📚</div> <div class="fill-item z7 shape-rect"></div>
+  <div class="fill-item z8">💻</div> <div class="fill-item z9 shape-L"></div> <div class="fill-item z10">💡</div> <div class="fill-item z11">✏️</div>
+  <div class="fill-item z12">🎒</div> <div class="fill-item z13 shape-rect"></div> <div class="fill-item z14">🎧</div> <div class="fill-item z15 shape-dot"></div>
+  <div class="fill-item z16">🍔</div> <div class="fill-item z17">🍪</div> <div class="fill-item z18">🚀</div> <div class="fill-item z19">👟</div>
+  <div class="fill-item z20">👕</div> <div class="fill-item z21 shape-circle"></div> <div class="fill-item z22">📷</div> <div class="fill-item z23">☕</div> <div class="fill-item z24 shape-L"></div>
 
-    <div class="flex items-center gap-6">
-      🔔
-      <div class="w-9 h-9 bg-black rounded-full flex items-center justify-center text-white">
-        👤
+  <main class="relative z-10 px-10 py-6">
+    
+    <header class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold flex items-center gap-2">🛒 CampusCart</h1>
+      <div class="flex items-center gap-6">
+        <span class="text-xl">🔔</span>
+        <div class="w-9 h-9 bg-black rounded-full flex items-center justify-center text-white cursor-pointer hover:bg-gray-800 transition">👤</div>
       </div>
+    </header>
+
+    <div class="mb-4">
+      <input type="text" placeholder="Search Chargers, Maggi, books..." class="w-full md:w-[420px] px-4 py-3 rounded-xl outline-none shadow-sm focus:shadow-md transition bg-white/90 backdrop-blur-sm" />
     </div>
-  </header>
 
-  <!-- SEARCH -->
-  <div class="mb-4">
-    <input
-      type="text"
-      placeholder="Search Chargers, Maggi, books..."
-      class="w-[420px] px-4 py-3 rounded-xl outline-none"
-    />
-  </div>
-
-  <!-- FILTERS -->
-  <div class="flex gap-3 mb-6">
-    <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm">+ Tech</span>
-    <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm">+ Food</span>
-    <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm">+ Books</span>
-    <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm">+ Free</span>
-  </div>
-
-  <!-- AVAILABLE NEAR YOU -->
-  <section class="mb-10">
-    <h2 class="font-semibold text-lg">Available near you</h2>
-    <p class="text-sm mb-4">Items from block A</p>
-
-    <div class="flex gap-6 overflow-x-auto">
-
-      <!-- ITEM CARD -->
-      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0">
-        <img src="maggie.png" class="w-full h-24 object-contain mb-2" />
-        <p class="font-medium">Maggi</p>
-        <p class="text-sm">Price: Rs.20</p>
-        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
-          View
-        </button>
-      </div>
-
-      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0">
-        <img src="charger.png" class="w-full h-24 object-contain mb-2" />
-        <p class="font-medium">Charger C-type</p>
-        <p class="text-sm">Price: Rs.200</p>
-        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
-          View
-        </button>
-      </div>
-
-      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0">
-        <img src="belt.png" class="w-full h-24 object-contain mb-2" />
-        <p class="font-medium">Brown Belt</p>
-        <p class="text-sm">Price: Rs.350</p>
-        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
-          View
-        </button>
-      </div>
-
-      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0">
-        <img src="shoes.png" class="w-full h-24 object-contain mb-2" />
-        <p class="font-medium">White Sneakers</p>
-        <p class="text-sm">Price: Rs.500</p>
-        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
-          View
-        </button>
-      </div>
-
+    <div class="flex gap-3 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+      <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm font-medium border border-black/5 cursor-pointer hover:bg-[#ffb915] transition whitespace-nowrap">+ Tech</span>
+      <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm font-medium border border-black/5 cursor-pointer hover:bg-[#ffb915] transition whitespace-nowrap">+ Food</span>
+      <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm font-medium border border-black/5 cursor-pointer hover:bg-[#ffb915] transition whitespace-nowrap">+ Books</span>
+      <span class="bg-[#FFC94A] px-4 py-1 rounded-full text-sm font-medium border border-black/5 cursor-pointer hover:bg-[#ffb915] transition whitespace-nowrap">+ Free</span>
     </div>
-  </section>
 
-  <!-- RECENTLY ADDED -->
-  <section>
-    <h2 class="font-semibold text-lg mb-4">Recently Added</h2>
+    <section class="mb-10">
+      <h2 class="font-bold text-lg">Available near you</h2>
+      <p class="text-sm mb-4 text-black/70">Items from block A</p>
 
-    <div class="flex gap-6">
+      <div class="flex gap-6 overflow-x-auto pb-8 pt-2"> <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+          <div class="w-full h-24 bg-white/40 rounded-lg mb-2"></div>
+          <p class="font-bold">Maggi</p>
+          <p class="text-sm font-medium opacity-80">Price: Rs.20</p>
+          <button class="bg-black text-white w-full mt-3 py-2 rounded-xl text-sm font-semibold transition-transform duration-200 hover:scale-110 active:scale-95">
+            View
+          </button>
+        </div>
 
-      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4">
-        <img src="watch.png" class="w-full h-24 object-contain mb-2" />
-        <p class="font-medium">Black Dial Watch</p>
-        <p class="text-sm">Price: Rs.400</p>
-        <button class="bg-black text-white w-full mt-3 py-1 rounded-full text-sm">
-          View
-        </button>
+        <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+          <div class="w-full h-24 bg-white/40 rounded-lg mb-2"></div>
+          <p class="font-bold">Charger C-type</p>
+          <p class="text-sm font-medium opacity-80">Price: Rs.200</p>
+          <button class="bg-black text-white w-full mt-3 py-2 rounded-xl text-sm font-semibold transition-transform duration-200 hover:scale-110 active:scale-95">
+            View
+          </button>
+        </div>
+
+        <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+          <div class="w-full h-24 bg-white/40 rounded-lg mb-2"></div>
+          <p class="font-bold">Brown Belt</p>
+          <p class="text-sm font-medium opacity-80">Price: Rs.350</p>
+          <button class="bg-black text-white w-full mt-3 py-2 rounded-xl text-sm font-semibold transition-transform duration-200 hover:scale-110 active:scale-95">
+            View
+          </button>
+        </div>
+
+        <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+          <div class="w-full h-24 bg-white/40 rounded-lg mb-2"></div>
+          <p class="font-bold">White Sneakers</p>
+          <p class="text-sm font-medium opacity-80">Price: Rs.500</p>
+          <button class="bg-black text-white w-full mt-3 py-2 rounded-xl text-sm font-semibold transition-transform duration-200 hover:scale-110 active:scale-95">
+            View
+          </button>
+        </div>
+
       </div>
+    </section>
 
-      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4">
-        <img src="cake.png" class="w-full h-24 object-contain mb-2" />
-        <p class="font-medium">Chocolate Pastry</p>
-        <p class="text-sm">Price: Rs.50</p>
-        <p class="text-xs mt-1">Expires: 5 hours</p>
-        <button class="bg-black text-white w-full mt-2 py-1 rounded-full text-sm">
-          View
-        </button>
+    <section class="pb-20">
+      <h2 class="font-bold text-lg mb-4">Recently Added</h2>
+
+      <div class="flex gap-6 overflow-x-auto pb-8 pt-2">
+
+        <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+          <div class="w-full h-24 bg-white/40 rounded-lg mb-2"></div>
+          <p class="font-bold">Black Dial Watch</p>
+          <p class="text-sm font-medium opacity-80">Price: Rs.400</p>
+          <button class="bg-black text-white w-full mt-3 py-2 rounded-xl text-sm font-semibold transition-transform duration-200 hover:scale-110 active:scale-95">
+            View
+          </button>
+        </div>
+
+        <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex-shrink-0 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+          <div class="w-full h-24 bg-white/40 rounded-lg mb-2"></div>
+          <p class="font-bold">Chocolate Pastry</p>
+          <p class="text-sm font-medium opacity-80">Price: Rs.50</p>
+          <p class="text-xs mt-1 text-red-600 font-bold">Expires: 5 hours</p>
+          <button class="bg-black text-white w-full mt-2 py-2 rounded-xl text-sm font-semibold transition-transform duration-200 hover:scale-110 active:scale-95">
+            View
+          </button>
+        </div>
+
+        <div class="bg-[#FFC94A]/50 w-[180px] rounded-2xl p-4 flex-shrink-0 flex items-center justify-center border-2 border-dashed border-black/10 transform transition-all duration-300 hover:scale-105">
+          <span class="text-gray-800 font-medium">More coming…</span>
+        </div>
+
       </div>
+    </section>
 
-      <div class="bg-[#FFC94A] w-[180px] rounded-2xl p-4 flex items-center justify-center">
-        <span class="text-gray-600">More coming…</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- POST BUTTON -->
-  <button class="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full">
-    + Post
-  </button>
-
+    <button class="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full shadow-2xl z-50 transform transition-transform duration-200 hover:scale-110 active:scale-95 font-semibold flex items-center gap-2">
+      <span class="text-xl">+</span> Post
+    </button>
+    
+  </main>
 </body>
 </html>
