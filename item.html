@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusCart</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Compiled TypeScript -->
+    <script defer src="app.js"></script>
+  </head>
+
+  <body class="bg-[#FFE1A8] min-h-screen font-sans">
+    <!-- Header -->
+    <header class="flex items-center gap-3 px-6 py-4">
+      <span class="text-xl cursor-pointer">←</span>
+      <h1 class="text-xl font-semibold flex items-center gap-2">
+        🛒 CampusCart
+      </h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-10 px-8 py-6">
+
+      <!-- LEFT SECTION -->
+      <section>
+        <!-- SKELETON LOADER (CHARGER PLACEHOLDER) -->
+        <div class="bg-white rounded-xl w-48 h-40 shadow-md p-4 space-y-3">
+          <div class="h-24 bg-gray-200 rounded animate-pulse"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="mt-6 space-y-3">
+          <h2 class="text-2xl font-bold">Charger C-Type</h2>
+
+          <div class="flex gap-2">
+            <span class="bg-orange-400 text-white px-4 py-1 rounded-full text-sm">
+              Tech
+            </span>
+            <span class="bg-orange-400 text-white px-4 py-1 rounded-full text-sm">
+              Daily Use
+            </span>
+          </div>
+
+          <p class="text-lg font-medium">Price: Rs.200</p>
+          <p class="text-md">Location:</p>
+        </div>
+
+        <!-- Seller Info -->
+        <div class="bg-[#FFC857] rounded-xl p-5 mt-8 w-full max-w-sm shadow-lg">
+          <h3 class="font-semibold text-lg mb-3">Seller Info</h3>
+          <p><strong>Name:</strong></p>
+          <p><strong>Year:</strong></p>
+          <p class="mt-2 text-sm text-gray-700">Posted 2hrs ago</p>
+        </div>
+      </section>
+
+      <!-- RIGHT SECTION -->
+      <section class="flex flex-col justify-between items-center">
+        <!-- Yellow Image -->
+        <img
+          src="./items.jpeg"
+          alt="Yellow delivery illustration"
+          class="w-full max-w-sm object-contain drop-shadow-lg transition-transform duration-300 hover:scale-105"
+        />
+
+        <!-- Action Buttons -->
+        <div class="flex gap-6 mt-10">
+          <button
+            id="negotiateBtn"
+            class="bg-black text-white px-8 py-3 rounded-xl hover:opacity-90 transition"
+          >
+            Negotiate
+          </button>
+
+          <button
+            id="purchaseBtn"
+            class="bg-black text-white px-8 py-3 rounded-xl hover:opacity-90 transition"
+          >
+            Purchase
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
