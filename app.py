@@ -2,12 +2,18 @@ from flask import Flask, request, jsonify
 from Data_setup import create_table
 import os
 from supabase import create_client, Client
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 create_table()
 
 supabase_url = os.getenv('SUPABASE_URL')
 supabase_key = os.getenv('SUPABASE_KEY')
+
+if not supabase_url or not supabase_key:
+    raise ValueError("SUPABASE_URL and SUPABASE_KEY environment variables must be set")
+
 db = create_client(supabase_url, supabase_key)
 
 @app.after_request
