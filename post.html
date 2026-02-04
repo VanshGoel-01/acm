@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post an Item | CampusCart</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-[#FFE1A8] min-h-screen font-sans">
+
+    <!-- Header -->
+    <header class="flex items-center gap-3 px-6 py-4">
+      <span class="text-xl cursor-pointer">←</span>
+      <h1 class="text-xl font-semibold flex items-center gap-2">
+        🛒 CampusCart
+      </h1>
+    </header>
+
+    <!-- Page Title -->
+    <section class="px-8 mt-4">
+      <h2 class="text-2xl font-semibold mb-4">Post an Item</h2>
+
+      <!-- Category Pills -->
+      <div class="flex flex-wrap gap-3">
+        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Tech</span>
+        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Food</span>
+        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Books</span>
+        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Fashion</span>
+        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Free</span>
+      </div>
+    </section>
+
+    <!-- Main Form Section -->
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-10 px-8 py-8">
+
+      <!-- LEFT CARD -->
+      <section class="bg-[#FFF6DC] rounded-xl p-6 shadow-md">
+        <h3 class="font-semibold mb-4">Basic Fields (always visible)</h3>
+
+        <div class="space-y-4">
+          <!-- Item Name -->
+          <div>
+            <label class="block text-sm mb-1">Item Name:</label>
+            <input
+              type="text"
+              class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+            />
+          </div>
+
+          <!-- Price -->
+          <div>
+            <label class="block text-sm mb-1">Price:</label>
+            <input
+              type="text"
+              class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+            />
+          </div>
+
+          <!-- Expiry -->
+          <div>
+            <label class="block text-sm mb-1">
+              *Expiry time (for food items):
+            </label>
+            <input
+              type="text"
+              class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT CARD -->
+      <section class="bg-[#FFF6DC] rounded-xl p-6 shadow-md flex flex-col justify-center items-center">
+        <h3 class="font-semibold mb-6 self-start">Upload Image</h3>
+
+        <div
+          class="border-2 border-dashed border-yellow-400 rounded-xl w-full h-40 flex flex-col items-center justify-center text-gray-600 cursor-pointer"
+        >
+          <span class="text-2xl mb-2">⬆️</span>
+          <span class="text-sm">Insert Picture</span>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Fields -->
+    <section class="px-8 space-y-4">
+      <div>
+        <label class="block text-sm mb-1">Location:</label>
+        <input
+          type="text"
+          class="w-72 bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm mb-1">Contact:</label>
+        <input
+          type="text"
+          class="w-72 bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+        />
+      </div>
+    </section>
+
+    <!-- Post Button -->
+    <div class="flex justify-end px-8 py-8">
+      <button
+        class="bg-black text-white px-10 py-3 rounded-xl hover:opacity-90 transition"
+      >
+        Post
+      </button>
+    </div>
+
+  </body>
+</html>
