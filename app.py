@@ -1,39 +1,14 @@
 from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
 from Data_setup import create_table
+import os
+from supabase import create_client, Client
 
 app = Flask(__name__)
 create_table()
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///campus_cart.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-
-class Item(db.Model):
-    __tablename__ = 'items'
-    __table_args__ = {'extend_existing': True} 
-
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    category = db.Column(db.String, nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    location = db.Column(db.String, nullable=False)
-    seller_name = db.Column(db.String, nullable=False)
-    contact = db.Column(db.String, nullable=False)
-    description = db.Column(db.String, nullable=True)
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "title": self.title,
-            "category": self.category,
-            "price": self.price,
-            "location": self.location,
-            "seller_name": self.seller_name,
-            "contact": self.contact,
-            "description": self.description
-        }
+supabase_url = os.getenv('SUPABASE_URL')
+supabase_key = os.getenv('SUPABASE_KEY')
+db = create_client(supabase_url, supabase_key)
 
 @app.after_request
 def add_cors(response):
@@ -44,8 +19,8 @@ def add_cors(response):
 
 @app.route('/items', methods=['GET'])
 def get_items():
-    items = Item.query.order_by(Item.id.desc()).all()
-    return jsonify([item.to_dict() for item in items])
+    response = db.table('items').select('*').order('id', desc=True).execute()
+    return jsonify(response.data)
 
 @app.route('/items', methods=['POST', 'OPTIONS'])
 def add_item():
@@ -54,18 +29,17 @@ def add_item():
 
     data = request.json
     
-    new_item = Item(
-        title=data['title'],
-        category=data['category'],
-        price=float(data['price']),
-        location=data['location'],
-        seller_name=data['seller_name'],
-        contact=data['contact'],
-        description=data.get('description', '')
-    )
+    new_item = {
+        'title': data['title'],
+        'category': data['category'],
+        'price': float(data['price']),
+        'location': data['location'],
+        'seller_name': data['seller_name'],
+        'contact': data['contact'],
+        'description': data.get('description', '')
+    }
     
-    db.session.add(new_item)
-    db.session.commit()
+    db.table('items').insert(new_item).execute()
     
     return jsonify({"message": "Item posted!"})
 

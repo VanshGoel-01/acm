@@ -1,24 +1,15 @@
-import sqlite3
+import os
+from supabase import create_client, Client
 
 def create_table():
-    conn = sqlite3.connect('campus_cart.db')
-    cursor = conn.cursor()
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS items (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            category TEXT NOT NULL,
-            price REAL NOT NULL,
-            location TEXT NOT NULL,       
-            seller_name TEXT NOT NULL,    
-            contact TEXT NOT NULL,
-            description TEXT              
-        )
-    ''')
+    supabase_url = os.getenv('SUPABASE_URL')
+    supabase_key = os.getenv('SUPABASE_KEY')
     
-    conn.commit()
-    conn.close()
+    supabase: Client = create_client(supabase_url, supabase_key)
+    
+    # Table creation is handled through Supabase dashboard or migrations
+    # This function is kept for compatibility
+    pass
 
 if __name__ == "__main__":
     create_table()
