@@ -7,6 +7,12 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      .tag.active {
+        background-color: #FFB108;
+      }
+    </style>
   </head>
 
   <body class="bg-[#FFE1A8] min-h-screen font-sans overflow-x-hidden">
@@ -14,12 +20,11 @@
     <!-- Header -->
     <header class="flex items-center gap-4 px-4 sm:px-6 py-4">
       <a
-  href="home.html"
-  class="text-5xl font-bold cursor-pointer hover:opacity-70 transition leading-none"
->
-  ←
-</a>
-
+        href="home.html"
+        class="text-5xl font-bold cursor-pointer hover:opacity-70 transition leading-none"
+      >
+        ←
+      </a>
 
       <h1 class="text-xl font-semibold flex items-center gap-2">
         🛒 CampusCart
@@ -32,11 +37,11 @@
 
       <!-- Category Pills -->
       <div class="flex flex-wrap gap-3">
-        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Tech</span>
-        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Food</span>
-        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Books</span>
-        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Fashion</span>
-        <span class="bg-white px-4 py-1 rounded-full text-sm shadow">+Free</span>
+        <span class="tag bg-white px-4 py-1 rounded-full text-sm shadow cursor-pointer transition">+Tech</span>
+        <span class="tag bg-white px-4 py-1 rounded-full text-sm shadow cursor-pointer transition">+Food</span>
+        <span class="tag bg-white px-4 py-1 rounded-full text-sm shadow cursor-pointer transition">+Books</span>
+        <span class="tag bg-white px-4 py-1 rounded-full text-sm shadow cursor-pointer transition">+Fashion</span>
+        <span class="tag bg-white px-4 py-1 rounded-full text-sm shadow cursor-pointer transition">+Free</span>
       </div>
     </section>
 
@@ -53,7 +58,7 @@
             <label class="block text-sm mb-1">Item Name:</label>
             <input
               type="text"
-              class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+              class="w-full bg-[#FFD36A] border-2 border-[#FFB108] rounded-full px-4 py-2 outline-none"
             />
           </div>
 
@@ -62,7 +67,7 @@
             <label class="block text-sm mb-1">Price:</label>
             <input
               type="text"
-              class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+              class="w-full bg-[#FFD36A] border-2 border-[#FFB108] rounded-full px-4 py-2 outline-none"
             />
           </div>
 
@@ -73,7 +78,7 @@
             </label>
             <input
               type="text"
-              class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+              class="w-full bg-[#FFD36A] border-2 border-[#FFB108] rounded-full px-4 py-2 outline-none"
             />
           </div>
         </div>
@@ -84,7 +89,7 @@
         <h3 class="font-semibold mb-6 self-start">Upload Image</h3>
 
         <div
-          class="border-2 border-dashed border-yellow-400 rounded-xl w-full h-40 flex flex-col items-center justify-center text-gray-600 cursor-pointer"
+          class="border-2 border-dashed border-yellow-400 rounded-xl w-full h-40 flex flex-col items-center justify-center text-gray-600 cursor-pointer hover:bg-yellow-100 transition"
         >
           <span class="text-2xl mb-2">⬆️</span>
           <span class="text-sm">Insert Picture</span>
@@ -98,7 +103,7 @@
         <label class="block text-sm mb-1">Location:</label>
         <input
           type="text"
-          class="w-72 bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+          class="w-full sm:w-72 bg-[#FFD36A] border-2 border-[#FFB108] rounded-full px-4 py-2 outline-none"
         />
       </div>
 
@@ -106,21 +111,31 @@
         <label class="block text-sm mb-1">Contact:</label>
         <input
           type="text"
-          class="w-72 bg-[#FFD36A] rounded-full px-4 py-2 outline-none"
+          class="w-full sm:w-72 bg-[#FFD36A] border-2 border-[#FFB108] rounded-full px-4 py-2 outline-none"
         />
       </div>
     </section>
 
     <!-- Post Button -->
-    <div class="flex justify-end px-8 py-8">
+    <div class="flex justify-center sm:justify-end px-8 py-8">
       <a
-  href="home.html"
-  class="bg-black text-white px-10 py-3 rounded-xl hover:opacity-90 transition inline-block"
->
-  Post
-</a>
-
+        href="home.html"
+        class="bg-black text-white px-10 py-3 rounded-xl hover:opacity-90 transition inline-block"
+      >
+        Post
+      </a>
     </div>
+
+    <!-- Script -->
+    <script>
+      const tags = document.querySelectorAll(".tag");
+
+      tags.forEach(tag => {
+        tag.addEventListener("click", () => {
+          tag.classList.toggle("active");
+        });
+      });
+    </script>
 
   </body>
 </html>
