@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post an Item | CampusCart</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .fill-item {
+      position: fixed;
+      z-index: 0;
+      opacity: 0.2;
+      pointer-events: none;
+      font-size: 28px;
+      animation: floatAnim 6s ease-in-out infinite;
+    }
+
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0px) rotate(var(--r, 0deg)); }
+      50% { transform: translateY(-8px) rotate(var(--r, 0deg)); }
+    }
+
+    .shape-L { width: 14px; height: 14px; border-top: 4px solid #dbb048; border-right: 4px solid #dbb048; border-top-right-radius: 4px; }
+    .shape-circle { width: 10px; height: 10px; border: 2px solid #dbb048; border-radius: 50%; }
+    .shape-dot { width: 8px; height: 8px; background-color: #dbb048; border-radius: 50%; }
+    .shape-rect { width: 6px; height: 16px; background-color: #dbb048; border-radius: 3px; }
+
+    .z1 { top: 5%; left: 5%; }
+    .z2 { top: 5%; left: 20%; }
+    .z3 { top: 5%; left: 35%; }
+    .z4 { top: 5%; left: 50%; }
+    .z5 { top: 5%; left: 65%; }
+    .z6 { top: 5%; left: 80%; }
+    .z7 { top: 20%; left: 10%; }
+    .z8 { top: 20%; left: 30%; }
+    .z9 { top: 20%; left: 50%; }
+    .z10 { top: 20%; left: 70%; }
+    .z11 { top: 35%; left: 5%; }
+    .z12 { top: 35%; left: 25%; }
+    .z13 { top: 35%; left: 45%; }
+    .z14 { top: 35%; left: 65%; }
+    .z15 { top: 35%; left: 85%; }
+    .z16 { top: 50%; left: 10%; }
+    .z17 { top: 50%; left: 30%; }
+    .z18 { top: 50%; left: 50%; }
+    .z19 { top: 50%; left: 70%; }
+    .z20 { top: 50%; left: 90%; }
+    .z21 { top: 65%; left: 15%; }
+    .z22 { top: 65%; left: 40%; }
+    .z23 { top: 65%; left: 65%; }
+    .z24 { top: 65%; left: 85%; }
+    .z25 { top: 80%; left: 5%; }
+    .z26 { top: 80%; left: 25%; }
+    .z27 { top: 80%; left: 45%; }
+    .z28 { top: 80%; left: 65%; }
+    .z29 { top: 80%; left: 85%; }
+
+    .category-pill {
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .category-pill.selected {
+      background-color: #000;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body class="bg-[#FFE1A8] min-h-screen font-sans overflow-x-hidden">
+
+  <div class="fill-item z1">🍕</div>
+  <div class="fill-item z2">📚</div>
+  <div class="fill-item z3">🎮</div>
+  <div class="fill-item z4">💻</div>
+  <div class="fill-item z5">🎧</div>
+  <div class="fill-item z6">🍔</div>
+  <div class="fill-item z7">🚀</div>
+  <div class="fill-item z8">☕</div>
+  <div class="fill-item z9">🎒</div>
+  <div class="fill-item z10">💡</div>
+  <div class="fill-item z11">📷</div>
+  <div class="fill-item z12">🍪</div>
+  <div class="fill-item z13">📝</div>
+  <div class="fill-item z14">👟</div>
+  <div class="fill-item z15">👕</div>
+  <div class="fill-item z16">📖</div>
+  <div class="fill-item z17">🎮</div>
+  <div class="fill-item z18">💻</div>
+  <div class="fill-item z19">🎧</div>
+  <div class="fill-item z20">🍔</div>
+  <div class="fill-item z21">🚀</div>
+  <div class="fill-item z22">☕</div>
+  <div class="fill-item z23">🎒</div>
+  <div class="fill-item z24">💡</div>
+  <div class="fill-item z25">📷</div>
+  <div class="fill-item z26">🍪</div>
+  <div class="fill-item z27">📝</div>
+  <div class="fill-item z28">👟</div>
+  <div class="fill-item z29">👕</div>
+
+  <header class="flex items-center gap-4 px-4 sm:px-6 py-4 relative z-10">
+    <a href="/home" class="text-5xl font-bold cursor-pointer hover:opacity-70 transition leading-none">←</a>
+    <h1 class="text-xl font-semibold flex items-center gap-2">🛒 CampusCart</h1>
+  </header>
+
+  <section class="px-8 mt-4 relative z-10">
+    <h2 class="text-2xl font-semibold mb-4">Post an Item</h2>
+
+    <div class="flex flex-wrap gap-3" id="category-pills">
+      <span class="category-pill bg-white px-4 py-1 rounded-full text-sm shadow" data-category="Tech">+Tech</span>
+      <span class="category-pill bg-white px-4 py-1 rounded-full text-sm shadow" data-category="Food">+Food</span>
+      <span class="category-pill bg-white px-4 py-1 rounded-full text-sm shadow" data-category="Books">+Books</span>
+      <span class="category-pill bg-white px-4 py-1 rounded-full text-sm shadow" data-category="Fashion">+Fashion</span>
+      <span class="category-pill bg-white px-4 py-1 rounded-full text-sm shadow" data-category="Free">+Free</span>
+    </div>
+  </section>
+
+  <main class="grid grid-cols-1 md:grid-cols-2 gap-10 px-8 py-8 relative z-10">
+
+    <section class="bg-[#FFF6DC] rounded-xl p-6 shadow-md">
+      <h3 class="font-semibold mb-4">Basic Fields (always visible)</h3>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm mb-1">Item Name:</label>
+          <input type="text" id="item-name" class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm mb-1">Price:</label>
+          <input type="number" id="item-price" class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm mb-1">Your Name:</label>
+          <input type="text" id="seller-name" class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm mb-1">Description (optional):</label>
+          <input type="text" id="item-description" class="w-full bg-[#FFD36A] rounded-full px-4 py-2 outline-none" />
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#FFF6DC] rounded-xl p-6 shadow-md flex flex-col justify-center items-center">
+      <h3 class="font-semibold mb-6 self-start">Upload Image</h3>
+
+      <div class="border-2 border-dashed border-yellow-400 rounded-xl w-full h-40 flex flex-col items-center justify-center text-gray-600 cursor-pointer">
+        <span class="text-2xl mb-2">⬆️</span>
+        <span class="text-sm">Insert Picture</span>
+      </div>
+    </section>
+  </main>
+
+  <section class="px-8 space-y-4 relative z-10">
+    <div>
+      <label class="block text-sm mb-1">Location:</label>
+      <input type="text" id="item-location" class="w-72 bg-[#FFD36A] rounded-full px-4 py-2 outline-none" placeholder="e.g., Men's Hostel - Block A" />
+    </div>
+
+    <div>
+      <label class="block text-sm mb-1">Contact:</label>
+      <input type="text" id="item-contact" class="w-72 bg-[#FFD36A] rounded-full px-4 py-2 outline-none" placeholder="Phone number or WhatsApp" />
+    </div>
+  </section>
+
+  <div class="flex justify-end px-8 py-8 relative z-10">
+    <button id="post-btn" onclick="postItem()" class="bg-black text-white px-10 py-3 rounded-xl hover:opacity-90 transition inline-block cursor-pointer">
+      Post
+    </button>
+  </div>
+
+  <div id="status-message" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-black text-white px-6 py-3 rounded-xl shadow-lg z-50 hidden"></div>
+
+  <script>
+    let selectedCategory = '';
+
+    document.querySelectorAll('.category-pill').forEach(pill => {
+      pill.addEventListener('click', function() {
+        document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedCategory = this.dataset.category;
+      });
+    });
+
+    function showStatus(message, isError = false) {
+      const statusEl = document.getElementById('status-message');
+      statusEl.textContent = message;
+      statusEl.style.backgroundColor = isError ? '#dc2626' : '#000';
+      statusEl.classList.remove('hidden');
+      
+      setTimeout(() => {
+        statusEl.classList.add('hidden');
+      }, 3000);
+    }
+
+    async function postItem() {
+      const title = document.getElementById('item-name').value.trim();
+      const price = document.getElementById('item-price').value.trim();
+      const sellerName = document.getElementById('seller-name').value.trim();
+      const description = document.getElementById('item-description').value.trim();
+      const location = document.getElementById('item-location').value.trim();
+      const contact = document.getElementById('item-contact').value.trim();
+
+      if (!title) {
+        showStatus('Please enter an item name', true);
+        return;
+      }
+      if (!price || isNaN(price) || parseFloat(price) < 0) {
+        showStatus('Please enter a valid price', true);
+        return;
+      }
+      if (!selectedCategory) {
+        showStatus('Please select a category', true);
+        return;
+      }
+      if (!sellerName) {
+        showStatus('Please enter your name', true);
+        return;
+      }
+      if (!location) {
+        showStatus('Please enter a location', true);
+        return;
+      }
+      if (!contact) {
+        showStatus('Please enter contact information', true);
+        return;
+      }
+
+      const postBtn = document.getElementById('post-btn');
+      postBtn.textContent = 'Posting...';
+      postBtn.disabled = true;
+
+      try {
+        const response = await fetch('/items', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: title,
+            category: selectedCategory,
+            price: parseFloat(price),
+            location: location,
+            seller_name: sellerName,
+            contact: contact,
+            description: description
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          showStatus('Item posted successfully!');
+          setTimeout(() => {
+            window.location.href = '/home';
+          }, 1500);
+        } else {
+          showStatus(result.error || 'Failed to post item', true);
+          postBtn.textContent = 'Post';
+          postBtn.disabled = false;
+        }
+      } catch (error) {
+        console.error('Error posting item:', error);
+        showStatus('Network error. Please try again.', true);
+        postBtn.textContent = 'Post';
+        postBtn.disabled = false;
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Campus Cart</title>
+    <meta name="theme-color" content="#FFD573">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #FFD573;
+            height: 100vh;
+            height: 100dvh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 32px 28px;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            color: #1a1a1a;
+            position: relative;
+        }
+
+        header { margin-top: 10px; z-index: 10; animation: slideDown 0.8s ease-out; }
+        h1 { font-size: 40px; font-weight: 700; margin-bottom: 8px; letter-spacing: -1px; line-height: 1.1; }
+        p { font-size: 18px; color: #222; font-weight: 500; opacity: 0.9; }
+
+        .image-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+            width: 100%;
+        }
+
+        .soft-glow {
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 65%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .card-bg {
+            width: 340px; 
+            height: 400px;
+            background-color: #FFC03D;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(181, 126, 17, 0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .student-illustration {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .fill-item {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.5;
+            pointer-events: none;
+            font-size: 28px;
+            color: transparent;
+            text-shadow: 0 0 0 #dbb048;
+            animation: floatAnim 6s ease-in-out infinite;
+        }
+
+        .shape-L { width: 14px; height: 14px; border-top: 4px solid #dbb048; border-right: 4px solid #dbb048; border-top-right-radius: 4px; }
+        .shape-circle { width: 10px; height: 10px; border: 2px solid #dbb048; border-radius: 50%; }
+        .shape-dot { width: 8px; height: 8px; background-color: #dbb048; border-radius: 50%; }
+        .shape-rect { width: 6px; height: 16px; background-color: #dbb048; border-radius: 3px; }
+
+        .z1 { top: 2%; left: 5%; transform: rotate(15deg); }
+        .z2 { top: 4%; left: 30%; font-size: 22px; }
+        .z3 { top: 2%; right: 40%; font-size: 26px; transform: rotate(-10deg); }
+        .z4 { top: 5%; right: 15%; font-size: 22px; }
+        .z5 { top: 15%; left: 15%; transform: rotate(-20deg); }
+        .z6 { top: 12%; right: 25%; transform: rotate(10deg); font-size: 30px; }
+        .z7 { top: 18%; right: 5%; font-size: 20px; opacity: 0.3; }
+        .z8 { top: 28%; left: 5%; font-size: 32px; transform: rotate(5deg); }
+        .z9 { top: 32%; left: 22%; font-size: 20px; opacity: 0.4; transform: rotate(45deg); }
+        .z10 { top: 25%; right: 10%; font-size: 30px; transform: rotate(-15deg); }
+        .z11 { top: 35%; right: 28%; font-size: 24px; opacity: 0.4; }
+        .z12 { top: 45%; left: 8%; font-size: 28px; transform: rotate(-10deg); }
+        .z13 { top: 50%; left: 25%; font-size: 18px; transform: rotate(90deg); }
+        .z14 { top: 42%; right: 15%; font-size: 34px; transform: rotate(20deg); }
+        .z15 { top: 52%; right: 5%; font-size: 20px; }
+        .z16 { top: 62%; left: 5%; font-size: 30px; transform: rotate(15deg); }
+        .z17 { top: 68%; left: 20%; font-size: 24px; opacity: 0.4; }
+        .z18 { top: 60%; right: 25%; font-size: 22px; transform: rotate(-30deg); }
+        .z19 { top: 65%; right: 8%; font-size: 30px; transform: rotate(10deg); }
+        .z20 { bottom: 15%; left: 12%; font-size: 26px; transform: rotate(-5deg); }
+        .z21 { bottom: 25%; left: 35%; font-size: 22px; opacity: 0.3; }
+        .z22 { bottom: 22%; right: 35%; font-size: 26px; transform: rotate(25deg); }
+        .z23 { bottom: 12%; right: 15%; font-size: 28px; transform: rotate(-10deg); }
+        .z24 { bottom: 5%; left: 45%; font-size: 20px; opacity: 0.3; }
+
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0px) rotate(var(--r, 0deg)); }
+            50% { transform: translateY(-6px) rotate(var(--r, 0deg)); }
+        }
+
+        .footer { display: flex; justify-content: flex-end; margin-bottom: 20px; z-index: 10; animation: slideUp 0.8s ease-out; }
+        .next-btn {
+            background-color: #000; color: #fff; border: none; padding: 16px 36px; border-radius: 16px; font-size: 18px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); transition: transform 0.2s; -webkit-tap-highlight-color: transparent;
+        }
+        .next-btn:active { transform: scale(0.95); }
+        .arrow { width: 8px; height: 8px; border-top: 2.5px solid white; border-right: 2.5px solid white; transform: rotate(45deg); }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @media (max-width: 380px) {
+            h1 { font-size: 32px; }
+            .card-bg { width: 100%; height: 350px; }
+            .z8 { left: 2%; } .z10 { right: 2%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Campus Cart</h1>
+        <p>The hyper-local market for Students</p>
+    </header>
+
+    <div class="fill-item z1">🍕</div>
+    <div class="fill-item z2 shape-L"></div>
+    <div class="fill-item z3">📡</div>
+    <div class="fill-item z4 shape-circle"></div>
+    <div class="fill-item z5">🎮</div>
+    <div class="fill-item z6">📚</div>
+    <div class="fill-item z7 shape-rect"></div>
+    <div class="fill-item z8">💻</div>
+    <div class="fill-item z9 shape-L"></div>
+    <div class="fill-item z10">💡</div>
+    <div class="fill-item z11">✏️</div>
+    <div class="fill-item z12">🎒</div>
+    <div class="fill-item z13 shape-rect"></div>
+    <div class="fill-item z14">🎧</div>
+    <div class="fill-item z15 shape-dot"></div>
+    <div class="fill-item z16">🍔</div>
+    <div class="fill-item z17">🍪</div>
+    <div class="fill-item z18">🚀</div>
+    <div class="fill-item z19">👟</div>
+    <div class="fill-item z20">👕</div>
+    <div class="fill-item z21 shape-circle"></div>
+    <div class="fill-item z22">📷</div>
+    <div class="fill-item z23">☕</div>
+    <div class="fill-item z24 shape-L"></div>
+
+    <div class="image-container">
+        <div class="soft-glow"></div>
+        <div class="card-bg">
+            <img src="{{ url_for('static', filename='test.jpeg') }}" alt="Student having lunch" class="student-illustration">
+        </div>
+    </div>
+
+    <div class="footer">
+        <button class="next-btn" onclick="window.location.href='/info'">
+            Next
+            <div class="arrow"></div>
+        </button>
+    </div>
+
+</body>
+</html>

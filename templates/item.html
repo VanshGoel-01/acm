@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Item | CampusCart</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+      animation: floatAnim 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-[#FFE1A8] min-h-screen font-sans overflow-x-hidden">
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <span class="absolute top-10 left-16 text-6xl opacity-30 animate-float">🍕</span>
+    <span class="absolute top-1/4 right-32 text-6xl opacity-30 animate-float" style="animation-duration: 7s;">📡</span>
+    <span class="absolute top-1/3 left-1/2 text-6xl opacity-30 animate-float" style="animation-duration: 8s;">💻</span>
+    <span class="absolute bottom-40 right-1/4 text-6xl opacity-30 animate-float">🎮</span>
+    <span class="absolute bottom-32 left-1/3 text-6xl opacity-30 animate-float" style="animation-duration: 7s;">🍔</span>
+    <span class="absolute top-3/4 right-20 text-6xl opacity-30 animate-float" style="animation-duration: 8s;">🎧</span>
+    <span class="absolute top-20 left-1/4 text-6xl opacity-30 animate-float">📚</span>
+    <span class="absolute top-1/2 right-10 text-6xl opacity-30 animate-float" style="animation-duration: 7s;">🚀</span>
+  </div>
+
+  <header class="flex items-center gap-4 px-6 py-4 relative z-10">
+    <a
+      href="/home"
+      class="text-5xl font-bold leading-none hover:opacity-70 transition"
+    >
+      ←
+    </a>
+    <h1 class="text-xl font-semibold flex items-center gap-2">
+      🛒 CampusCart
+    </h1>
+  </header>
+
+  <div id="loading" class="relative z-10 flex items-center justify-center min-h-[50vh]">
+    <p class="text-lg font-medium">Loading item details...</p>
+  </div>
+
+  <div id="error" class="relative z-10 flex flex-col items-center justify-center min-h-[50vh] hidden">
+    <p class="text-lg font-medium text-red-600 mb-4">Item not found</p>
+    <a href="/home" class="bg-black text-white px-6 py-2 rounded-xl">Back to Home</a>
+  </div>
+
+  <main id="item-content" class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12 px-8 py-10 items-start hidden">
+
+    <section class="space-y-8">
+
+      <div class="bg-white rounded-2xl p-6 w-64 h-64 flex items-center justify-center shadow">
+        <span id="item-emoji" class="text-8xl">📦</span>
+      </div>
+
+      <div class="bg-[#FFC857] rounded-2xl p-10 w-[22rem] shadow-lg">
+        <h3 class="font-bold text-xl mb-5">Seller Info</h3>
+        <p class="text-lg"><strong>Name:</strong> <span id="seller-name">-</span></p>
+        <p class="text-lg mt-1"><strong>Contact:</strong> <span id="seller-contact">-</span></p>
+      </div>
+
+    </section>
+
+    <section class="space-y-5">
+
+      <div class="flex items-center gap-4 flex-wrap">
+        <h2 id="item-title" class="text-2xl font-bold">-</h2>
+        <span id="item-category" class="bg-orange-400 text-white px-4 py-1 rounded-full text-sm">-</span>
+      </div>
+
+      <p class="text-lg font-medium">Price: Rs.<span id="item-price">-</span></p>
+
+      <p class="text-md font-medium">
+        Location: <span id="item-location">-</span>
+      </p>
+
+      <div id="item-description-container" class="hidden">
+        <p class="text-md font-medium">Description:</p>
+        <p id="item-description" class="text-sm text-gray-700 mt-1">-</p>
+      </div>
+
+    </section>
+
+    <section class="flex flex-col items-center justify-between">
+
+      <div class="flex gap-6 mt-10">
+
+        <a
+          id="whatsapp-link"
+          href="#"
+          target="_blank"
+          class="bg-black text-white px-8 py-3 rounded-xl hover:opacity-90 transition"
+        >
+          Contact Seller
+        </a>
+
+        <a
+          href="/home"
+          class="bg-black text-white px-8 py-3 rounded-xl hover:opacity-90 transition"
+        >
+          Back to Home
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    function getCategoryEmoji(category) {
+      const emojis = {
+        'Tech': '💻',
+        'Food': '🍕',
+        'Books': '📚',
+        'Fashion': '👕',
+        'Free': '🎁',
+        'Daily Use': '🎧'
+      };
+      return emojis[category] || '📦';
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    async function loadItem() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const itemId = urlParams.get('id');
+
+      if (!itemId) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error').classList.remove('hidden');
+        return;
+      }
+
+      try {
+        const response = await fetch(`/items/${itemId}`);
+        
+        if (!response.ok) {
+          throw new Error('Item not found');
+        }
+
+        const item = await response.json();
+
+        document.getElementById('item-title').textContent = escapeHTML(item.title);
+        document.getElementById('item-price').textContent = item.price;
+        document.getElementById('item-category').textContent = escapeHTML(item.category);
+        document.getElementById('item-location').textContent = escapeHTML(item.location);
+        document.getElementById('seller-name').textContent = escapeHTML(item.seller_name);
+        document.getElementById('seller-contact').textContent = escapeHTML(item.contact);
+        document.getElementById('item-emoji').textContent = getCategoryEmoji(item.category);
+
+        if (item.description) {
+          document.getElementById('item-description').textContent = escapeHTML(item.description);
+          document.getElementById('item-description-container').classList.remove('hidden');
+        }
+
+        const whatsappMessage = encodeURIComponent(`Hi! I'm interested in your "${item.title}" listed on CampusCart for Rs.${item.price}.`);
+        const contact = item.contact.replace(/\D/g, '');
+        document.getElementById('whatsapp-link').href = `https://wa.me/${contact}?text=${whatsappMessage}`;
+
+        document.title = `${item.title} | CampusCart`;
+
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('item-content').classList.remove('hidden');
+
+      } catch (error) {
+        console.error('Error loading item:', error);
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error').classList.remove('hidden');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadItem);
+  </script>
+
+</body>
+</html>
