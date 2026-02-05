@@ -30,18 +30,22 @@ def index():
     return render_template('index.html')
 
 @app.route('/home')
+@app.route('/home.html')
 def home():
     return render_template('home.html')
 
 @app.route('/post')
+@app.route('/post.html')
 def post():
     return render_template('post.html')
 
 @app.route('/item')
+@app.route('/item.html')
 def item():
     return render_template('item.html')
 
 @app.route('/info')
+@app.route('/info.html')
 def info():
     return render_template('info.html')
 
