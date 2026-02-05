@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from Data_setup import create_table
 import os
 from supabase import create_client, Client
@@ -23,10 +23,41 @@ def add_cors(response):
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
     return response
 
+# ========== HTML PAGE ROUTES ==========
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+@app.route('/post')
+def post():
+    return render_template('post.html')
+
+@app.route('/item')
+def item():
+    return render_template('item.html')
+
+@app.route('/info')
+def info():
+    return render_template('info.html')
+
+# ========== API ROUTES ==========
+
 @app.route('/items', methods=['GET'])
 def get_items():
     response = db.table('items').select('*').order('id', desc=True).execute()
     return jsonify(response.data)
+
+@app.route('/items/<int:item_id>', methods=['GET'])
+def get_item(item_id):
+    response = db.table('items').select('*').eq('id', item_id).execute()
+    if response.data:
+        return jsonify(response.data[0])
+    return jsonify({"error": "Item not found"}), 404
 
 @app.route('/items', methods=['POST', 'OPTIONS'])
 def add_item():
@@ -45,9 +76,9 @@ def add_item():
         'description': data.get('description', '')
     }
     
-    db.table('items').insert(new_item).execute()
+    result = db.table('items').insert(new_item).execute()
     
-    return jsonify({"message": "Item posted!"})
+    return jsonify({"message": "Item posted!", "item": result.data[0] if result.data else None})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
